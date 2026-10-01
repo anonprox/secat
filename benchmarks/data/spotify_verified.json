@@ -1,0 +1,829 @@
+{
+  "_meta": {
+    "_about": "Verified RestBench-Spotify hidden route oracle. The upstream question text and original ToolCoder dataset are preserved byte-for-byte; only six evaluator-only solution chains are corrected. See oracle/make_verified_spotify_dataset.py.",
+    "_source": "RestBench (Song et al.), Spotify scenario, 57 tasks.",
+    "_corrected": 6,
+    "_excluded_from_accuracy": 0,
+    "_unchanged": 51,
+    "_corrected_task_ids": [
+      10,
+      21,
+      22,
+      25,
+      26,
+      37
+    ]
+  },
+  "tasks": [
+    {
+      "query": "Make me a playlist containing three songs of Mariah Carey and name it 'Love Mariah'",
+      "solution": [
+        "GET /search",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Add the first song of The Dark Side of the Moon in my playback queue",
+      "solution": [
+        "GET /search",
+        "GET /albums/{id}/tracks",
+        "POST /me/player/queue"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /albums/{id}/tracks",
+        "POST /me/player/queue"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Add Summertime Sadness by Lana Del Rey in my first playlist",
+      "solution": [
+        "GET /search",
+        "GET /me/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /me/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Skip to the next track and set the volume to 60",
+      "solution": [
+        "POST /me/player/next",
+        "PUT /me/player/volume"
+      ],
+      "original_solution": [
+        "POST /me/player/next",
+        "PUT /me/player/volume"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Put the song now being played into My Music",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "PUT /me/tracks"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "PUT /me/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Append the first song of the newest album of my following first artist to my player queue",
+      "solution": [
+        "GET /me/following",
+        "GET /artists/{id}/albums",
+        "GET /albums/{id}/tracks",
+        "POST /me/player/queue"
+      ],
+      "original_solution": [
+        "GET /me/following",
+        "GET /artists/{id}/albums",
+        "GET /albums/{id}/tracks",
+        "POST /me/player/queue"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow the artist of the song now playing",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Play a song from Taylor Swift's newest album",
+      "solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "play me some quiet songs",
+      "solution": [
+        "GET /search",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "GET /search",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow the artist of the first song recently playing",
+      "solution": [
+        "GET /me/player/recently-played",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "status": "corrected",
+      "note": "Original task asks for the first recently played song but the gold route used currently-playing. Replaced only the history acquisition route; kept the historical track-detail/follow chain."
+    },
+    {
+      "query": "Switch to the next song and set the single track repeat mode",
+      "solution": [
+        "POST /me/player/next",
+        "PUT /me/player/repeat"
+      ],
+      "original_solution": [
+        "POST /me/player/next",
+        "PUT /me/player/repeat"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Save Jay Chou's album Mojito",
+      "solution": [
+        "GET /search",
+        "PUT /me/albums"
+      ],
+      "original_solution": [
+        "GET /search",
+        "PUT /me/albums"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Rename my first playlist to \"My First\"",
+      "solution": [
+        "GET /me/playlists",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Remove following from the artist of the currently playing music",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "DELETE /me/following"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "DELETE /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Pause playback, turn down the volume and resume playing",
+      "solution": [
+        "PUT /me/player/pause",
+        "PUT /me/player/volume",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "PUT /me/player/pause",
+        "PUT /me/player/volume",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Add songs from the current playing queue to a new playlist called \"Current\"",
+      "solution": [
+        "GET /me/player/queue",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me/player/queue",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "What is the name of the song I playing right now?",
+      "solution": [
+        "GET /me/player/currently-playing"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Remove the first album from my music",
+      "solution": [
+        "GET /me/albums",
+        "DELETE /me/albums"
+      ],
+      "original_solution": [
+        "GET /me/albums",
+        "DELETE /me/albums"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Show me the albums I saved",
+      "solution": [
+        "GET /me/albums"
+      ],
+      "original_solution": [
+        "GET /me/albums"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow the artist of the song which is playing right now.",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Recommend me some tracks with the same genre of the music currently playing",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "GET /artists/{id}",
+        "GET /search"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /search"
+      ],
+      "status": "corrected",
+      "note": "Same-genre discovery needs artist genre metadata; the currently-playing response does not establish that semantic field. Added artist detail before search."
+    },
+    {
+      "query": "Append the first track in The Beatle's newest album to my 'My Rock' playlist",
+      "solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "GET /albums/{id}/tracks",
+        "GET /me/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "POST /playlists/{playlist_id}/tracks",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "status": "corrected",
+      "note": "Original route neither fetched the newest album's tracks nor resolved the named 'My Rock' playlist. Added album tracks and current-user playlists; removed unrelated playlist-update call."
+    },
+    {
+      "query": "Make top tracks of Taylor Swift a new playlist named \"Love Taylor\"",
+      "solution": [
+        "GET /search",
+        "GET /artists/{id}/top-tracks",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /artists/{id}/top-tracks",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Who is my favorite artist?",
+      "solution": [
+        "GET /me/top/{type}"
+      ],
+      "original_solution": [
+        "GET /me/top/{type}"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Give me a song of my favorite artist",
+      "solution": [
+        "GET /me/top/{type}",
+        "GET /artists/{id}/top-tracks"
+      ],
+      "original_solution": [
+        "GET /me/top/{type}",
+        "GET /artists/{id}"
+      ],
+      "status": "corrected",
+      "note": "Artist detail does not provide a song. Historical Spotify semantics require an artist track-producing route; corrected to artist top tracks. This endpoint is unavailable in 2026 Development Mode, so the task remains excluded from the strict dev2026 set."
+    },
+    {
+      "query": "Delete all music from my 'My R&B' playlist and rename it as 'Test'",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "DELETE /playlists/{playlist_id}/tracks",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "status": "corrected",
+      "note": "Deleting all playlist items requires first acquiring the playlist's track URIs/ids. Added playlist-item acquisition before delete."
+    },
+    {
+      "query": "show me the album information of the song currently playing",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "GET /albums/{id}"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "GET /albums/{id}"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Pause device 'My PC' if it is now playing something",
+      "solution": [
+        "GET /me/player",
+        "PUT /me/player/pause"
+      ],
+      "original_solution": [
+        "GET /me/player",
+        "PUT /me/player/pause"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "pause current song and resume it on 'My PC'",
+      "solution": [
+        "PUT /me/player/pause",
+        "GET /me/player/devices",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "PUT /me/player/pause",
+        "GET /me/player/devices",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "show me the name of Maroon 5's newest album",
+      "solution": [
+        "GET /search",
+        "GET /artists/{id}/albums"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /artists/{id}/albums"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Recommend more artists base on my first following artist",
+      "solution": [
+        "GET /me/following",
+        "GET /artists/{id}/related-artists"
+      ],
+      "original_solution": [
+        "GET /me/following",
+        "GET /artists/{id}/related-artists"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Unfollow the artist of the song now playing and skip to the next song",
+      "solution": [
+        "GET /me/player/currently-playing",
+        "DELETE /me/following",
+        "POST /me/player/next"
+      ],
+      "original_solution": [
+        "GET /me/player/currently-playing",
+        "DELETE /me/following",
+        "POST /me/player/next"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow Taylor Swift",
+      "solution": [
+        "GET /search",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /search",
+        "PUT /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Make my top tracks a new playlist called 'My Top'",
+      "solution": [
+        "GET /me/top/{type}",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me/top/{type}",
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Remove the first song from my playlist 'My Rock'",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "add top songs of the first of my following artist to My Music",
+      "solution": [
+        "GET /me/following",
+        "GET /artists/{id}/top-tracks",
+        "PUT /me/tracks"
+      ],
+      "original_solution": [
+        "GET /me/following",
+        "GET /artists/{id}/top-tracks",
+        "PUT /me/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow all the artists involved in my playlist 'My R&B'",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /me",
+        "GET /playlists/{playlist_id}",
+        "PUT /me/following"
+      ],
+      "status": "corrected",
+      "note": "Original route fetched /me and playlist metadata but not the named playlist's tracks/artists. Resolve the named current-user playlist and its track items before following their artists."
+    },
+    {
+      "query": "remove the second track from my playlist 'My R&B'",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "remove the third track from My Music",
+      "solution": [
+        "GET /me/tracks",
+        "DELETE /me/tracks"
+      ],
+      "original_solution": [
+        "GET /me/tracks",
+        "DELETE /me/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow all the singers involved in the song When You Believe",
+      "solution": [
+        "GET /search",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /tracks/{id}",
+        "PUT /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Skip to the next track",
+      "solution": [
+        "POST /me/player/next"
+      ],
+      "original_solution": [
+        "POST /me/player/next"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Play my playlist 'My Rock'",
+      "solution": [
+        "GET /me/playlists",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Clear my music library and cancel all following singers",
+      "solution": [
+        "GET /me/tracks",
+        "DELETE /me/tracks",
+        "GET /me/following",
+        "DELETE /me/following"
+      ],
+      "original_solution": [
+        "GET /me/tracks",
+        "DELETE /me/tracks",
+        "GET /me/following",
+        "DELETE /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Create a new playlist and name it Quiet",
+      "solution": [
+        "GET /me",
+        "POST /users/{user_id}/playlists"
+      ],
+      "original_solution": [
+        "GET /me",
+        "POST /users/{user_id}/playlists"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Turn down the volume to 20",
+      "solution": [
+        "PUT /me/player/volume"
+      ],
+      "original_solution": [
+        "PUT /me/player/volume"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Set the single track repeat mode",
+      "solution": [
+        "PUT /me/player/repeat"
+      ],
+      "original_solution": [
+        "PUT /me/player/repeat"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Pause playback, increase volume to 80 and switch to the next song",
+      "solution": [
+        "PUT /me/player/pause",
+        "PUT /me/player/volume",
+        "POST /me/player/next"
+      ],
+      "original_solution": [
+        "PUT /me/player/pause",
+        "PUT /me/player/volume",
+        "POST /me/player/next"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Play the newest album of BIGBANG",
+      "solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "PUT /me/player/play"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /artists/{id}/albums",
+        "PUT /me/player/play"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Follow the artist of the album Mojito",
+      "solution": [
+        "GET /search",
+        "GET /albums/{id}",
+        "PUT /me/following"
+      ],
+      "original_solution": [
+        "GET /search",
+        "GET /albums/{id}",
+        "PUT /me/following"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Play the third song from my music library and set the single track repeat mode",
+      "solution": [
+        "GET /me/tracks",
+        "GET /tracks/{id}",
+        "PUT /me/player/play",
+        "PUT /me/player/repeat"
+      ],
+      "original_solution": [
+        "GET /me/tracks",
+        "GET /tracks/{id}",
+        "PUT /me/player/play",
+        "PUT /me/player/repeat"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Create a new playlist named 'BIGBANG' and add a song of BIGBANG to it",
+      "solution": [
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "GET /search",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me",
+        "POST /users/{user_id}/playlists",
+        "GET /search",
+        "POST /playlists/{playlist_id}/tracks"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Delete all songs from my first playlist",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}/tracks",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}",
+        "DELETE /playlists/{playlist_id}/tracks"
+      ],
+      "status": "corrected",
+      "note": "Deleting all playlist items requires acquiring the playlist's track URIs/ids first. Corrected the metadata-only playlist GET to the playlist-items route before delete."
+    },
+    {
+      "query": "Make my first playlist private",
+      "solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "original_solution": [
+        "GET /me/playlists",
+        "GET /playlists/{playlist_id}",
+        "PUT /playlists/{playlist_id}"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Add album Mojito to my music library",
+      "solution": [
+        "GET /search",
+        "PUT /me/albums"
+      ],
+      "original_solution": [
+        "GET /search",
+        "PUT /me/albums"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Add the first song from my music library to the playback queue and enable single song repeat mode",
+      "solution": [
+        "GET /me/tracks",
+        "POST /me/player/queue",
+        "PUT /me/player/repeat"
+      ],
+      "original_solution": [
+        "GET /me/tracks",
+        "POST /me/player/queue",
+        "PUT /me/player/repeat"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "What is my user name?",
+      "solution": [
+        "GET /me"
+      ],
+      "original_solution": [
+        "GET /me"
+      ],
+      "status": "unchanged",
+      "note": ""
+    },
+    {
+      "query": "Pause the player",
+      "solution": [
+        "PUT /me/player/pause"
+      ],
+      "original_solution": [
+        "PUT /me/player/pause"
+      ],
+      "status": "unchanged",
+      "note": ""
+    }
+  ]
+}
