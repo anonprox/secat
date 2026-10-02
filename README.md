@@ -1,4 +1,4 @@
-# Systematic Evaluation of Code-as-Tool Agents
+# Understanding and Mitigating Failures in Code-as-Tool LLM Agents
 
 ## Included
 
