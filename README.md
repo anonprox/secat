@@ -1,6 +1,4 @@
-# SECAT: Systematic Evaluation of Code-as-Tool Agents
-
-This is the minimal anonymous artifact for reproducing the SECAT experiments and the Observation-Carrying Answers (OCA) agent. It contains only the code, benchmark data, dependencies, and run scripts needed for the paper experiments.
+# Systematic Evaluation of Code-as-Tool Agents
 
 ## Included
 
