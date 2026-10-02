@@ -82,7 +82,7 @@ bash scripts/run_apibank_lv2.sh deepseek-v4-flash
 bash scripts/run_rq4.sh
 ```
 
-`smolagents#1374` replay uses `anthropic/claude-sonnet-4-6` and `smolagents#1386` replay uses `gpt-4o-mini`. The other four paired cases use `gpt-5.4-mini` 
+`smolagents#1374` replay uses `anthropic/claude-sonnet-4-6` and `smolagents#1386` replay uses `gpt-4o-mini`. The other four cases use `gpt-5.4-mini` 
 
 ## Output
 
